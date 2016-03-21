@@ -1,0 +1,125 @@
+
+
+\documentclass{sig-alternate}
+%\documentclass[letterpaper,twocolumn,10pt]{article}
+%\documentclass[conference]{IEEEtran}
+
+%% Packages
+%% ========
+
+%% LaTeX Font encoding -- DO NOT CHANGE
+\usepackage[T1]{fontenc}
+
+%% Babel provides support for languages.  'english' uses British
+%% English hyphenation and text snippets like "Figure" and
+%% "Theorem". Use the option 'ngerman' if your document is in German.
+%% Use 'american' for American English.  Note that if you change this,
+%% the next LaTeX run may show spurious errors.  Simply run it again.
+%% If they persist, remove the .aux file and try again.
+\usepackage[english]{babel}
+
+%% Input encoding 'utf8'. In some cases you might need 'utf8x' for
+%% extra symbols. Not all editors, especially on Windows, are UTF-8
+%% capable, so you may want to use 'latin1' instead.
+\usepackage[utf8]{inputenc}
+
+%% This changes default fonts for both text and math mode to use Herman Zapfs
+%% excellent Palatino font.  Do not change this.
+%\usepackage[sc]{mathpazo}
+
+%% The AMS-LaTeX extensions for mathematical typesetting.  Do not
+%% remove.
+\usepackage{amsmath,amssymb,amsfonts,mathrsfs}
+
+% Color (for instance for the comment macros)
+\usepackage[usenames,dvipsnames]{xcolor}
+
+%% LaTeX' own graphics handling
+\usepackage{graphicx}
+
+%% Super trick by Pavel, changes font and saves almost one page
+\usepackage{mathptmx}
+
+%% Some more packages that you may want to use.  Have a look at the
+%% file, and consult the package docs for each.
+\input{extrapackages}
+
+
+%% Macros
+%% ======
+\input{macrosetup}
+
+%% Make document internal hyperlinks wherever possible. (TOC, references)
+%% This MUST be loaded after varioref, which is loaded in 'extrapackages'
+%% above.  We just load it last to be safe.
+%% Daniele: I commented out the original setting, changed to have colored refs
+%\usepackage[linkcolor=black,colorlinks=true,citecolor=black,filecolor=black]{hyperref}
+\usepackage[colorlinks=true,breaklinks]{hyperref}
+
+
+%% Daniele: Fix mathfonts back to default font, since packages usenix changes them (like mathptmx)
+%\DeclareMathAlphabet{\mathnormal}{OML}{cmm}{m}{it}
+%\DeclareMathAlphabet{\mathrm}{OT1}{cmr}{m}{n}
+%\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+%\DeclareMathAlphabet{\mathbf}{OT1}{cmr}{bx}{n}
+%\DeclareMathAlphabet{\mathsf}{OT1}{cmss}{m}{n}
+%\DeclareMathAlphabet{\mathit}{OT1}{cmr}{m}{it}
+%\DeclareMathAlphabet{\mathtt}{OT1}{cmtt}{m}{n}
+%\DeclareSymbolFont{letters}{OML}{cmm}{m}{it}
+
+%% Hyphenation
+\hyphenation{re-pu-dia-tion}
+\hyphenation{spe-ci-fi-cally}
+\hyphenation{com-pu-ta-tion}
+\hyphenation{com-pu-ta-tional}
+
+\pagenumbering{arabic}
+
+%% Title, authors, etc.
+\title{The Title of the Paper}
+%\author{Revision \#\svnrev}
+
+
+
+\begin{document}
+
+%% the following four macros are for small spacing around equations
+%\abovedisplayskip=0pt
+%\abovedisplayshortskip=0pt
+%\belowdisplayskip=0pt
+%\belowdisplayshortskip=0pt
+
+\maketitle
+
+\input{sections/abstract}
+
+\section{Introduction}
+\label{sec:introduction}
+\input{sections/introduction}
+
+\section{Related Work}
+\label{sec:relatedwork}
+\input{sections/relatedwork}
+
+
+
+%--------------------------------------------------------------------------------
+% \section{Acknowledgments}
+% \input{acks}
+%--------------------------------------------------------------------------------
+
+\bibliographystyle{plain}
+\small{
+	\bibliography{bib}
+}
+%--------------------------------------------------------------------------------
+%\clearpage
+%\appendix
+%\section{Appendix}
+%\include{appendix}
+
+%\section{Extras}
+%\include{extras}
+
+\end{document}
+

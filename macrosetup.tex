@@ -1,0 +1,80 @@
+%% Custom commands
+%% ===============
+
+%% Comments
+\newcommand{\david}{\ding{43}\textcolor{red} {DB:}\textcolor{magenta} }
+\newcommand{\daniele}{\ding{110}\ding{43}\textcolor{red} {Daniele:}\textcolor{red} }
+\newcommand{\takayuki}{\ding{110}\ding{43}\textcolor{green} {Daniele:}\textcolor{red} }
+
+
+%% General macros for style and similar
+%% ===========================
+
+%% Change to paragraph style
+\renewcommand\paragraph[1]{\smallskip\noindent\textbf{\textsf{#1.\,}}}
+
+%% Special emphasis in bold - use only for very strong emphasis
+\newcommand{\strongemph}[1]{\textbf{#1}}
+
+%% Frequently used standard abbreviations (i.e., e.g., etc.)
+\newcommand{\etc}{etc.\@\xspace}
+\newcommand{\ie}{i.e.,\@\xspace}
+\newcommand{\eg}{e.g.,\@\xspace}
+\newcommand{\cf}{cf.\@\xspace}
+\newcommand{\etal}{et~al.\@\xspace}
+%\newcommand{\Dr}{Dr.\@~}
+%\newcommand{\Prof}{Prof.\@~}
+%\newcommand{\ProfDr}{Prof.\@~Dr.\@~}
+
+
+%% Macros for the protocol
+%% ==================
+
+%% Insert protocol specific macros in the area below
+%% -------------------------------------------------------------------------------------
+
+
+%% -------------------------------------------------------------------------------------
+
+%% Macros for math and crypto
+\newcommand{\concat}{\ensuremath{\mathbin{\|}}}
+\newcommand{\xor}{\oplus}
+\newcommand{\enc}{\ensuremath{\mathsf{enc}}}
+\newcommand{\dec}{\ensuremath{\mathsf{dec}}}
+\newcommand{\mac}{\ensuremath{\mathsf{MAC}}}
+\newcommand{\prp}{\ensuremath{\mathsf{PRP}}}
+\newcommand{\prg}{\ensuremath{\mathsf{PRG}}}
+
+% Other math utilities
+%\newcommand{\concat}{\ensuremath{\mathbin{\|}}}
+
+%% Macros for algorithms
+% Statex with indent (for algorithms)
+\makeatletter
+\newcommand{\StatexIndent}[1][3]{%
+	\setlength\@tempdima{\algorithmicindent}%
+	\Statex\hskip\dimexpr#1\@tempdima\relax}
+\makeatother
+\renewcommand{\algorithmicrequire}{\textbf{Input:\ \ \;}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+%% Special characters for number sets, e.g. real or complex numbers.
+%\newcommand{\C}{\mathbb{C}}
+%\newcommand{\K}{\mathbb{K}}
+%\newcommand{\N}{\mathbb{N}}
+%\newcommand{\Q}{\mathbb{Q}}
+%\newcommand{\R}{\mathbb{R}}
+%\newcommand{\Z}{\mathbb{Z}}
+%\newcommand{\X}{\mathbb{X}}
+
+%% Fixed/scaling delimiter examples (see mathtools documentation)
+%\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+%\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+
+%% Use the alternative epsilon per default and define the old one as \oldepsilon
+\let\oldepsilon\epsilon
+\renewcommand{\epsilon}{\ensuremath\varepsilon}
+
+%% Also set the alternate phi as default.
+\let\oldphi\phi
+\renewcommand{\phi}{\ensuremath{\varphi}}
