@@ -1,29 +1,25 @@
 
-PAPERNAME=paper
-TEXFILES=*.tex
-BIBFILES=*.bib
+PAPERNAME := paper
+FIGS := figs
+SECTIONS := sections
+SETUPFILES := extrapackages.tex macrosetup.tex
+CLSFILE :=
+STYFILES :=
+
+TEXFILES := $(wildcard $(PAPERNAME).tex $(SETUPFILES) $(SECTIONS)/*.tex)
+BIBFILES := $(wildcard *.bib)
+FIGFILES := $(wildcard $(FIGS)/*.eps $(FIGS)/*.png $(FIGS)/*.jpg)
 
 
-$(PAPERNAME).pdf: $(TEXFILES) $(BIBFILES)
+all: $(PAPERNAME).pdf
+.PHONY: figs clean
 
+
+$(PAPERNAME).pdf: $(TEXFILES) $(BIBFILES) $(FIGFILES) $(CLSFILE) $(STYFILES)
 	pdflatex paper
 	bibtex --min-crossrefs=100 paper
 	pdflatex paper
 	pdflatex paper
 
-fastcompile:
-	latex paper
-	dvips -Ppdf -G0 -t letter -o $(PAPERNAME).ps paper
-	ps2pdf -dCompatibilityLevel=1.3 $(PAPERNAME).ps
-
-.PHONY: figs clean
-
-
-gv: $(PAPERNAME).ps
-	gv $(PAPERNAME).ps &
-
-tar:
-	tar -cvzf $(PAPERNAME).taz *.tex *.bib *.fig *.eps *.bst *.perl makefile
-
 clean:
-	rm -f $(PAPERNAME).ps $(PAPERNAME).pdf *.dvi *.aux *.log *.blg *.bbl *.eps *.out *~ figs/*-converted-to.pdf *.synctex.gz
+	-rm -f $(PAPERNAME).pdf *.aux *.log *.blg *.bbl *.out *~ $(FIGS)/*-converted-to.pdf *.synctex.gz
