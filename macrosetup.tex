@@ -2,9 +2,38 @@
 %% ===============
 
 %% Comments
-\newcommand{\david}{\ding{43}\textcolor{red} {DB:}\textcolor{magenta} }
-\newcommand{\daniele}{\ding{110}\ding{43}\textcolor{red} {Daniele:}\textcolor{red} }
-\newcommand{\takayuki}{\ding{110}\ding{43}\textcolor{green} {Daniele:}\textcolor{red} }
+\makeatletter
+\newcommand{\mysubscript}[2]{\textsubscript{\textcolor{#2}{\textsf{\textbf{#1}}}}}
+\newcommand*\defcomment[4]{% 1. Long name, 2. short name, 3. initials, 4. color
+    \expandafter\newcommand\csname #1\endcsname[1]{%
+        \textcolor{#4}{\ding{110}\mysubscript{#3}{#4}~{##1}}%
+    }
+    \expandafter\newcommand\csname @#2delnoname\endcsname[1]{%
+        \bgroup\markoverwith{\textcolor{#4}{\rule[0.35ex]{2pt}{1pt}}}\ULon{##1}%
+    }
+    \expandafter\newcommand\csname #2del\endcsname[1]{%
+        \csname @#2delnoname\endcsname{##1}\kern0.1em\mysubscript{#3}{#4}%
+    }
+    \expandafter\newcommand\csname #2sout\endcsname[1]{#2del}
+    \expandafter\newcommand\csname #2sugg\endcsname[1]{%
+        \textcolor{#4}{[##1]\mysubscript{#3}{#4}}%
+    }
+    \expandafter\newcommand\csname #2subs\endcsname[2]{%
+        \csname @#2delnoname\endcsname{##1}\csname #2sugg\endcsname{##2}%
+    }
+}
+%% Daniele: see https://tex.stackexchange.com/a/173245
+\makeatother
+\defcomment{daniele}{da}{DA}{magenta}
+
+%\newcommand{\danielecolor}{magenta}
+%\newcommand{\danielesubscript}{\textsubscript{\textcolor{\danielecolor}{\textsf{\textbf{DA}}}}}
+%\newcommand{\daniele}[1]{\textcolor{\danielecolor}{\ding{110}\danielesubscript~{#1}}}
+%\newcommand{\dadelnoname}[1]{\bgroup\markoverwith{\textcolor{\danielecolor}{\rule[0.35ex]{2pt}{1pt}}}\ULon{#1}}
+%\newcommand{\dadel}[1]{\dadelnoname{#1}\kern0.1em\danielesubscript}
+%\newcommand{\dasout}{\dadel}
+%\newcommand{\dasugg}[1]{\textcolor{\danielecolor}{[#1]\danielesubscript}}
+%\newcommand{\dasubs}[2]{\dadelnoname{#1}\dasugg{#2}}
 
 
 %% General macros for style and similar
@@ -52,10 +81,10 @@
 
 %\let\OLDthebibliography\thebibliography
 %\renewcommand\thebibliography[1]{
-%	\OLDthebibliography{#1}
-%	\setlength{\parskip}{0pt}
-%	\setlength{\itemsep}{0pt plus 0.3ex}
-%	%raggedright
+%   \OLDthebibliography{#1}
+%   \setlength{\parskip}{0pt}
+%   \setlength{\itemsep}{0pt plus 0.3ex}
+%   %raggedright
 %}
 
 
@@ -84,8 +113,8 @@
 % Statex with indent (for algorithms)
 \makeatletter
 \newcommand{\StatexIndent}[1][3]{%
-	\setlength\@tempdima{\algorithmicindent}%
-	\Statex\hskip\dimexpr#1\@tempdima\relax}
+    \setlength\@tempdima{\algorithmicindent}%
+    \Statex\hskip\dimexpr#1\@tempdima\relax}
 \makeatother
 \renewcommand{\algorithmicrequire}{\textbf{Input:\ \ \;}}
 \renewcommand{\algorithmicensure}{\textbf{Output:}}
