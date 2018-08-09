@@ -73,9 +73,24 @@
 
 \pagenumbering{arabic}
 
+%% Print revision: write18 has to be enabled, for example in pdflatex with --enable-write18
+\ifnum\pdfshellescape=1
+    %% write18 is enabled
+    \immediate\write18{./print_svn_revision.sh > svn_revision_number.tex}
+    %\write18{rm svn_revision_number.tex}
+    \newcommand{\revisionLabel}{Revision \#\input{svn_revision_number.tex}}
+\else
+    %% write18 is disabled or restricted
+    \ifdefined\svnrevisionnumber %% This should be defined in the makefile
+        \newcommand{\revisionLabel}{Revision \#\svnrevisionnumber}
+    \else
+        \newcommand{\revisionLabel}{\textit{Could not print svn revision (use make, or enable write18)}}
+    \fi
+\fi
+
 %% Title, authors, etc.
 \title{The Title of the Paper}
-%\author{Revision \#\svnrev}
+\author{\revisionLabel}
 
 
 
@@ -108,7 +123,7 @@
 
 \bibliographystyle{plain}
 \small{
-	\bibliography{bib}
+    \bibliography{bib}
 }
 %--------------------------------------------------------------------------------
 %\clearpage
