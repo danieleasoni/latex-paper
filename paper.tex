@@ -76,21 +76,21 @@
 %% Print revision: write18 has to be enabled, for example in pdflatex with --enable-write18
 \ifnum\pdfshellescape=1
     %% write18 is enabled
-    \immediate\write18{./print_svn_revision.sh > svn_revision_number.tex}
+    \immediate\write18{./print_vers_ctrl_info.sh > vers_ctrl_info.tex}
     %\write18{rm svn_revision_number.tex}
-    \newcommand{\revisionLabel}{Revision \#\input{svn_revision_number.tex}}
+    \newcommand{\revisionLabel}{Revision \#\input{vers_ctrl_info.tex}}
 \else
     %% write18 is disabled or restricted
-    \ifdefined\svnrevisionnumber %% This should be defined in the makefile
-        \newcommand{\revisionLabel}{Revision \#\svnrevisionnumber}
+    \ifdefined\versioncontrolinfo %% This should be defined in the makefile
+        \newcommand{\versionControlText}{Revision \#\versioncontrolinfo}
     \else
-        \newcommand{\revisionLabel}{\textit{Could not print svn revision (use make, or enable write18)}}
+        \newcommand{\versionControlText}{\textit{Could not get versioning info (use make, or enable write18)}}
     \fi
 \fi
 
 %% Title, authors, etc.
 \title{The Title of the Paper}
-\author{\revisionLabel}
+\author{\versionControlText}
 
 
 

@@ -15,8 +15,8 @@ TEXFILES := $(wildcard $(MAIN).tex $(SETUPFILES) $(SECTIONS)/*.tex)
 BIBFILES := $(wildcard *.bib)
 FIGFILES := $(wildcard $(FIGS)/*.eps $(FIGS)/*.png $(FIGS)/*.jpg $(FIGS)/*.pdf)
 
-SVN_REV := $(shell ./print_svn_revision.sh)
-MAIN_WITH_OPT := "\def\svnrevisionnumber{$(SVN_REV)} \input{$(MAIN).tex}"
+VERS_INFO := $(shell ./print_vers_ctrl_info.sh)
+MAIN_WITH_OPT := "\def\versioncontrolinfo{$(VERS_INFO)} \input{$(MAIN).tex}"
 
 
 all: $(MAIN).pdf
