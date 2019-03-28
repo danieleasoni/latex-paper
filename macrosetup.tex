@@ -6,7 +6,7 @@
 \newcommand{\mysubscript}[2]{\textsubscript{\textcolor{#2}{\textsf{\textbf{#1}}}}}
 \newcommand*\defcomment[4]{% 1. Long name, 2. short name, 3. initials, 4. color
     \expandafter\newcommand\csname #1\endcsname[1]{%
-        \textcolor{#4}{\ding{110}\mysubscript{#3}{#4}~{##1}}%
+        \textcolor{#4}{\ding{110}\mysubscript{#3}{#4}\,{##1}}%
     }
     \expandafter\newcommand\csname @#2delnoname\endcsname[1]{%
         \bgroup\markoverwith{\textcolor{#4}{\rule[0.35ex]{2pt}{1pt}}}\ULon{##1}%
