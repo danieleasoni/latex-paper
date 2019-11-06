@@ -1,10 +1,25 @@
 %% Custom commands
 %% ===============
 
-%% Comments
+%%%% Fancy comments macros ====================================
+\newif\ifremovecomments
+%% Change the following to hide all comments (accept all suggestions, deletions and replacements)
+\removecommentsfalse
+%\removecommentstrue
+
 \makeatletter
 \newcommand{\mysubscript}[2]{\textsubscript{\textcolor{#2}{\textsf{\textbf{#1}}}}}
 \newcommand*\defcomment[4]{% 1. Long name, 2. short name, 3. initials, 4. color
+  \ifremovecomments
+    \expandafter\newcommand\csname #1\endcsname[1]{%
+    }
+    \expandafter\newcommand\csname @#2delnoname\endcsname[1]{%
+    }
+    \expandafter\newcommand\csname #2del\endcsname[1]{%
+    }
+    \expandafter\newcommand\csname #2sugg\endcsname[1]{##1}
+    \expandafter\newcommand\csname #2subs\endcsname[2]{##2}
+  \else
     \expandafter\newcommand\csname #1\endcsname[1]{%
         \textcolor{#4}{\ding{110}\mysubscript{#3}{#4}\,{##1}}%
     }
@@ -14,18 +29,22 @@
     \expandafter\newcommand\csname #2del\endcsname[1]{%
         \csname @#2delnoname\endcsname{##1}\kern0.1em\mysubscript{#3}{#4}%
     }
-    \expandafter\newcommand\csname #2sout\endcsname[1]{#2del}
     \expandafter\newcommand\csname #2sugg\endcsname[1]{%
         \textcolor{#4}{[##1]\mysubscript{#3}{#4}}%
     }
     \expandafter\newcommand\csname #2subs\endcsname[2]{%
         \csname @#2delnoname\endcsname{##1}\csname #2sugg\endcsname{##2}%
     }
+  \fi
+    \expandafter\newcommand\csname #2sout\endcsname{\csname #2del\endcsname}
 }
 %% Daniele: see https://tex.stackexchange.com/a/173245
 \makeatother
+
+%%%%% Define new users for comments here ======================
 \defcomment{daniele}{da}{DA}{magenta}
 
+%% Daniele: old comment macros (no fanciness)
 %\newcommand{\danielecolor}{magenta}
 %\newcommand{\danielesubscript}{\textsubscript{\textcolor{\danielecolor}{\textsf{\textbf{DA}}}}}
 %\newcommand{\daniele}[1]{\textcolor{\danielecolor}{\ding{110}\danielesubscript~{#1}}}
