@@ -2,6 +2,7 @@ MAIN := paper
 FIGS := figs
 SECTIONS := sections
 SETUPFILES := extrapackages.tex macrosetup.tex
+BIBFILES := bib.bib
 CLSFILE :=
 STYFILES :=
 
@@ -20,6 +21,7 @@ MAIN_WITH_OPT := "\def\versioncontrolinfo{$(VERS_INFO)} \input{$(MAIN).tex}"
 
 
 all: $(MAIN).pdf
+
 .PHONY: clean all force
 
 
