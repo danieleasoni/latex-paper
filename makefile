@@ -36,3 +36,13 @@ clean:
 
 force:
 	make -B
+
+###### ALTERNATIVE WITH LATEXMK ################
+#MK = latexmk
+#FLAGS = -pdf
+#
+#$(MAIN).pdf: $(TEXFILES) $(BIBFILES) $(FIGFILES) $(CLSFILE) $(STYFILES)
+#	$(MK) $(FLAGS) $(MAIN)
+#
+#clean:
+#	$(MK) -C
