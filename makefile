@@ -45,4 +45,4 @@ force:
 #	$(MK) $(FLAGS) $(MAIN)
 #
 #clean:
-#	$(MK) -C
+#	$(MK) -bibtex -C
