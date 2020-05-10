@@ -24,8 +24,11 @@
         \textcolor{#4}{\ding{110}\mysubscript{#3}{#4}\,{##1}}%
     }
     \expandafter\newcommand\csname @#2delnoname\endcsname[1]{%
-        \bgroup\markoverwith{\textcolor{#4}{\rule[0.35ex]{2pt}{1pt}}}\ULon{##1}%
+        \texorpdfstring%
+        {\bgroup\markoverwith{\textcolor{#4}{\rule[0.35ex]{2pt}{1pt}}}\ULon{##1}}%
+        {##1}%
     }
+    \expandafter\MakeRobust\csname @#2delnoname\endcsname
     \expandafter\newcommand\csname #2del\endcsname[1]{%
         \csname @#2delnoname\endcsname{##1}\kern0.1em\mysubscript{#3}{#4}%
     }
