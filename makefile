@@ -39,10 +39,11 @@ force:
 
 ###### ALTERNATIVE WITH LATEXMK ################
 #MK = latexmk
-#FLAGS = -pdf
+#FLAGS = -pdf -quiet -logfilewarninglist
+#CLEANFLAGS = -bibtex -C
 #
 #$(MAIN).pdf: $(TEXFILES) $(BIBFILES) $(FIGFILES) $(CLSFILE) $(STYFILES)
 #	$(MK) $(FLAGS) $(MAIN)
 #
 #clean:
-#	$(MK) -bibtex -C
+#	$(MK) $(CLEANFLAGS)
